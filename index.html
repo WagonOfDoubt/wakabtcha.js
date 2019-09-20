@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Home</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Home</h1>
+
+    
+
+
+
+    
+
+
+    <h3> </h3>
+
+
+
+
+
+
+
+
+
+
+    
+
+
+
+
+    <section>
+        <article><h1><img src="https://raw.githubusercontent.com/WagonOfDoubt/wakabtcha.js/assets/words/wakabtcha.gif" alt="wakabtcha"></h1>
+<p><img src="https://raw.githubusercontent.com/WagonOfDoubt/wakabtcha.js/assets/words/wakabtcha.gif" alt="wakabtcha">
+<img src="https://raw.githubusercontent.com/WagonOfDoubt/wakabtcha.js/assets/words/_space.gif" alt="_space">
+<img src="https://raw.githubusercontent.com/WagonOfDoubt/wakabtcha.js/assets/words/is.gif" alt="is">
+<img src="https://raw.githubusercontent.com/WagonOfDoubt/wakabtcha.js/assets/words/_space.gif" alt="_space">
+<img src="https://raw.githubusercontent.com/WagonOfDoubt/wakabtcha.js/assets/words/an.gif" alt="an">
+<img src="https://raw.githubusercontent.com/WagonOfDoubt/wakabtcha.js/assets/words/_space.gif" alt="_space">
+<img src="https://raw.githubusercontent.com/WagonOfDoubt/wakabtcha.js/assets/words/oldschool.gif" alt="oldschool">
+<img src="https://raw.githubusercontent.com/WagonOfDoubt/wakabtcha.js/assets/words/_space.gif" alt="_space">
+<img src="https://raw.githubusercontent.com/WagonOfDoubt/wakabtcha.js/assets/words/captcha.gif" alt="captcha">
+<img src="https://raw.githubusercontent.com/WagonOfDoubt/wakabtcha.js/assets/words/_space.gif" alt="_space">
+<img src="https://raw.githubusercontent.com/WagonOfDoubt/wakabtcha.js/assets/words/generator.gif" alt="generator">
+<img src="https://raw.githubusercontent.com/WagonOfDoubt/wakabtcha.js/assets/words/_space.gif" alt="_space">
+<img src="https://raw.githubusercontent.com/WagonOfDoubt/wakabtcha.js/assets/words/ported.gif" alt="ported">
+<img src="https://raw.githubusercontent.com/WagonOfDoubt/wakabtcha.js/assets/words/_space.gif" alt="_space">
+<img src="https://raw.githubusercontent.com/WagonOfDoubt/wakabtcha.js/assets/words/from.gif" alt="from">
+<img src="https://raw.githubusercontent.com/WagonOfDoubt/wakabtcha.js/assets/words/_space.gif" alt="_space">
+<img src="https://raw.githubusercontent.com/WagonOfDoubt/wakabtcha.js/assets/words/original.gif" alt="original">
+<img src="https://raw.githubusercontent.com/WagonOfDoubt/wakabtcha.js/assets/words/_space.gif" alt="_space">
+<img src="https://raw.githubusercontent.com/WagonOfDoubt/wakabtcha.js/assets/words/wakaba.gif" alt="wakaba">
+<img src="https://raw.githubusercontent.com/WagonOfDoubt/wakabtcha.js/assets/words/_space.gif" alt="_space">
+<img src="https://raw.githubusercontent.com/WagonOfDoubt/wakabtcha.js/assets/words/source.gif" alt="source"></p>
+<p>Wakabtcha consists of two independend modules: for generating random text (captcha answers) and for generating images from text (captcha questions). It doesn't have any database handling and verification logic, just challenge itself. It is an accurate port of <a href="https://github.com/some1suspicious/wakaba-original/blob/master/captcha.pl">captcha.pl</a> from original Wakaba and produces 100% identical result on binary level. Customisation capabilities include user-defined fonts, grammar, level of randomization and styling.</p>
+<h2><img src="https://raw.githubusercontent.com/WagonOfDoubt/wakabtcha.js/assets/words/usage.gif" alt="usage"></h2>
+<h3>Basic usage</h3>
+<pre class="prettyprint source lang-js"><code>const wakabtcha = require('wakabtcha');
+const fs = require('fs');
+
+const answer = wakabtcha.generateAnswer();
+const image = wakabtcha.generateImage(answer);
+// save buffer to file system
+fs.writeFile(`${answer}.gif`, image, console.log);
+</code></pre>
+<h3>generateAnswer options</h3>
+<pre class="prettyprint source lang-js"><code>wakabtcha.generateAnswer(start = '%W%', grammar = DEFAULT_GRAMMAR)
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>name</th>
+<th>type</th>
+<th>default</th>
+<th>descrition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>start</td>
+<td>String</td>
+<td>&quot;%W%&quot;</td>
+<td>Starting template</td>
+</tr>
+<tr>
+<td>grammar</td>
+<td>Object.&lt;String,Array.&lt;String&gt;&gt;</td>
+<td>DEFAULT_GRAMMAR</td>
+<td>Grammar object (see below)</td>
+</tr>
+</tbody>
+</table>
+<h3>generateImage options</h3>
+<pre class="prettyprint source lang-js"><code>wakabtcha.generateImage(str, options)
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>name</th>
+<th>type</th>
+<th>default</th>
+<th>descrition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>str</td>
+<td>String</td>
+<td></td>
+<td>Captcha answer</td>
+</tr>
+<tr>
+<td>options</td>
+<td>Object</td>
+<td>Override defaults</td>
+<td></td>
+</tr>
+<tr>
+<td>options.captchaHeight</td>
+<td>Number</td>
+<td>18</td>
+<td>Height of image</td>
+</tr>
+<tr>
+<td>options.captchaScribble</td>
+<td>Number</td>
+<td>0.2</td>
+<td>Random scatter level</td>
+</tr>
+<tr>
+<td>options.captchaScaling</td>
+<td>Number</td>
+<td>0.15</td>
+<td>Amplitude of random scale</td>
+</tr>
+<tr>
+<td>options.captchaRotation</td>
+<td>Number</td>
+<td>0.3</td>
+<td>Amplitude of random rotation</td>
+</tr>
+<tr>
+<td>options.captchaSpacing</td>
+<td>Number</td>
+<td>2.5</td>
+<td>Distance between letters</td>
+</tr>
+<tr>
+<td>options.font</td>
+<td>Object.&lt;String,Number|Number[]&gt;</td>
+<td>DEFAULT_FONT</td>
+<td>Captcha font object, where keys are characters, values are arrays where first value is character width, other values are strokes where each stroke is represented by array of coordinates [x1,y1, x2,y2, x3,y3, xN,yN]</td>
+</tr>
+<tr>
+<td>options.fontHeight</td>
+<td>Number</td>
+<td>8</td>
+<td>Height of characters in font</td>
+</tr>
+<tr>
+<td>options.foregroundColor</td>
+<td>Number</td>
+<td>0x000000</td>
+<td>Color of text</td>
+</tr>
+<tr>
+<td>options.backgroundColor</td>
+<td>Number</td>
+<td>0xFFFFFF</td>
+<td>Color of background</td>
+</tr>
+<tr>
+<td>options.backgroundTransparent</td>
+<td>Boolean</td>
+<td>true</td>
+<td>Use transparent background</td>
+</tr>
+</tbody>
+</table>
+<h2><img src="https://raw.githubusercontent.com/WagonOfDoubt/wakabtcha.js/assets/words/dictionary.gif" alt="dictionary"></h2>
+<p>Answers generation can be changed, for example, to generate answers with different writing systems or character sets.
+Generation of answers based on <a href="https://en.wikipedia.org/wiki/L-system">L-system</a>. L-system starts with axiom string, that acts as a template.
+Grammar object describes rules of L-system. All substrings in initial axiom enclosed in % symbols (e.g. &quot;%W%&quot;) are recursively replaced by random string from array from grammar object's field where key matches substring. Example: <code>&quot;%W%&quot; =&gt; &quot;%C%%T%&quot; =&gt; &quot;l%V%%F%&quot; =&gt; &quot;lock&quot;</code></p>
+<h4>Example 1: Default configuration</h4>
+<pre class="prettyprint source lang-js"><code>const DEFAULT_GRAMMAR = {
+  'W': ['%C%%T%', '%C%%T%', '%C%%X%', '%C%%D%%F%', '%C%%V%%F%%T%', '%C%%D%%F%%U%', '%C%%T%%U%', '%I%%T%', '%I%%C%%T%', '%A%'],
+  'A': ['%K%%V%%K%%V%tion'],
+  'K': ['b', 'c', 'd', 'f', 'g', 'j', 'l', 'm', 'n', 'p', 'qu', 'r', 's', 't', 'v', 's%P%'],
+  'I': ['ex', 'in', 'un', 're', 'de'],
+  'T': ['%V%%F%', '%V%%E%e'],
+  'U': ['er', 'ish', 'ly', 'en', 'ing', 'ness', 'ment', 'able', 'ive'],
+  'C': ['b', 'c', 'ch', 'd', 'f', 'g', 'h', 'j', 'k', 'l', 'm', 'n', 'p', 'qu', 'r', 's', 'sh', 't', 'th', 'v', 'w', 'y', 's%P%', '%R%r', '%L%l'],
+  'E': ['b', 'c', 'ch', 'd', 'f', 'g', 'dg', 'l', 'm', 'n', 'p', 'r', 's', 't', 'th', 'v', 'z'],
+  'F': ['b', 'tch', 'd', 'ff', 'g', 'gh', 'ck', 'll', 'm', 'n', 'n', 'ng', 'p', 'r', 'ss', 'sh', 't', 'tt', 'th', 'x', 'y', 'zz', 'r%R%', 's%P%', 'l%L%'],
+  'P': ['p', 't', 'k', 'c'],
+  'Q': ['b', 'd', 'g'],
+  'L': ['b', 'f', 'k', 'p', 's'],
+  'R': ['%P%', '%Q%', 'f', 'th', 'sh'],
+  'V': ['a', 'e', 'i', 'o', 'u'],
+  'D': ['aw', 'ei', 'ow', 'ou', 'ie', 'ea', 'ai', 'oy'],
+  'X': ['e', 'i', 'o', 'aw', 'ow', 'oy']
+};
+</code></pre>
+<h4>Example 2: Simple numeric code</h4>
+<pre class="prettyprint source lang-js"><code>const numbersGrammar = {
+  'N': [1, 2, 3, 4, 5, 6, 7, 8, 9, 0]
+};
+
+// will generate 6-digit code
+wakabtcha.generateAnswer('%N%%N%%N%%N%%N%%N%', numbersGrammar)
+</code></pre>
+<h2><img src="https://raw.githubusercontent.com/WagonOfDoubt/wakabtcha.js/assets/words/fonts.gif" alt="fonts"></h2>
+<p>Appearance of every letter is described by font object. Keys of this object are characters, characters that are missing in font will not be rendered. Values are array where first element is character width, and subseuqet elements are strokes. Stroke is 1-dimensional array of coordinates that form path of series of straight lines in form [x0,y0, x1,y1, x2,y2, ..., xN,yN]. Coordinate system origin is top left corner.</p>
+<h4>Example 1: Default font</h4>
+<pre class="prettyprint source lang-js"><code>const DEFAULT_FONT = {
+  'a': [4, [0, 2, 1, 1, 2, 1, 3, 2, 3, 5, 4, 6], [3, 3, 1, 3, 0, 4, 0, 5, 1, 6, 2, 6, 3, 5]],
+  'b': [3, [0, 0, 0, 6, 2, 6, 3, 5, 3, 4, 2, 3, 0, 3]],
+  'c': [3, [3, 6, 1, 6, 0, 5, 0, 4, 1, 3, 3, 3]],
+  'd': [3, [3, 0, 3, 6, 1, 6, 0, 5, 0, 4, 1, 3, 3, 3]],
+  'e': [3, [3, 6, 1, 6, 0, 5, 0, 3, 1, 2, 3, 2, 3, 3, 2, 4, 0, 4]],
+  'f': [3, [1, 6, 1, 1, 2, 0, 3, 0], [0, 3, 2, 3]],
+  'g': [3, [3, 6, 1, 6, 0, 5, 0, 4, 1, 3, 3, 3, 3, 7, 2, 8, 0, 8]],
+  'h': [3, [0, 0, 0, 6], [0, 3, 2, 3, 3, 4, 3, 6]],
+  'i': [2, [1, 3, 1, 6], [1, 1, 1.5, 1.5, 1, 2, 0.5, 1.5]],
+  'j': [3, [2, 3, 2, 7, 1, 8, 0, 7], [2, 1, 2.5, 1.5, 2, 2, 1.5, 1.5]],
+  'k': [3, [0, 0, 0, 6], [0, 4, 1, 4, 2, 2], [0, 4, 1, 4, 3, 6]],
+  'l': [2, [0.5, 0, 0.5, 5, 1.5, 6]],
+  'm': [4, [0, 6, 0, 3, 1, 3, 2, 4], [2, 6, 2, 3, 3, 3, 4, 4, 4, 6]],
+  'n': [3, [0, 3, 0, 6], [0, 4, 1, 3, 2, 3, 3, 4, 3, 6]],
+  'o': [3, [0, 4, 1, 3, 2, 3, 3, 4, 3, 5, 2, 6, 1, 6, 0, 5, 0, 4]],
+  'p': [3, [0, 8, 0, 3, 2, 3, 3, 4, 3, 5, 2, 6, 0, 6]],
+  'q': [3, [3, 6, 1, 6, 0, 5, 0, 4, 1, 3, 3, 3, 3, 8], [2, 7, 4, 7]],
+  'r': [3, [0, 3, 0, 6], [0, 4, 1, 3, 2, 3]],
+  's': [3, [0, 6, 2, 6, 3, 5, 0, 4, 1, 3, 3, 3]],
+  't': [3, [1, 1, 1, 5, 2, 6], [0, 3, 2, 3]],
+  'u': [3, [0, 3, 0, 6, 2, 6, 3, 5, 3, 3]],
+  'v': [3, [0, 3, 1.5, 6, 3, 3]],
+  'w': [4, [0, 3, 0, 5, 1, 6, 2, 5, 3, 6, 4, 5, 4, 3]],
+  'x': [3, [0, 3, 3, 6], [0, 6, 3, 3]],
+  'y': [3, [0, 3, 0, 5, 1, 6, 3, 6], [3, 3, 3, 7, 2, 8, 0, 8]],
+  'z': [3, [0, 3, 3, 3, 0, 6, 3, 6], [0.5, 4.5, 2.5, 4.5]],
+  ' ': [3],
+};
+</code></pre></article>
+    </section>
+
+
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-wakabtcha.html">wakabtcha</a></li><li><a href="module-wakabtcha_lib_answer-generator.html">wakabtcha/lib/answer-generator</a></li><li><a href="module-wakabtcha_lib_image-generator.html">wakabtcha/lib/image-generator</a></li><li><a href="module-wakabtcha_test.html">wakabtcha/test</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.3</a> on Fri Sep 20 2019 08:22:08 GMT+0300 (GMT+03:00)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>
